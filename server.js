@@ -82,6 +82,9 @@ app.post("/submitForm", async (req, res) => {
             <li><strong>UG Percentage:</strong> ${
               formData.ugPercentage || "Not provided"
             }</li>
+            <li><strong>UG Course:</strong> ${
+              formData.ugCourse || "Not provided"
+            }</li>
           `
               : ""
           }
