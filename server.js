@@ -60,12 +60,12 @@ app.post("/submitForm", async (req, res) => {
         <h3>Education Details:</h3>
         <ul>
           <li><strong>10th Result:</strong> ${formData.tenthResult}</li>
+          <li><strong>12th Result:</strong> ${formData.twelfthResult}</li>
           <li><strong>12th Stream:</strong> ${formData.twelfthStream}</li>
           <li><strong>12th Percentage:</strong> ${
             formData.twelfthPercentage
           }</li>
-          <li><strong>12th Result:</strong> ${formData.twelfthResult}</li>
-
+          
 
           
           ${
