@@ -44,10 +44,8 @@ app.post("/submitForm", async (req, res) => {
       to: process.env.RECEIVER,
       subject: "New Student Submission",
       html: `
+        <img src="https://iili.io/Ja9CYoN.md.png" alt="MyFutureway Logo" style="width: 150px; height: auto; margin: 0 auto;">
 
-      <img src="https://iili.io/Ja9CYoN.md.png" alt="MyFutureway Logo" style="width: 150px; height: auto; margin: 0 auto;">
-
-    
         <h3>Personal Information:</h3>
         <ul>
           <li><strong>Name:</strong> ${formData.name}</li>
@@ -63,11 +61,30 @@ app.post("/submitForm", async (req, res) => {
     
         <h3>Education Details:</h3>
         <ul>
-          <li><strong>10th School Name:</strong> ${formData.tenthSchoolName}</li>
+          <li><strong>10th School Name:</strong> ${
+            formData.tenthSchoolName
+          }</li>
           <li><strong>10th Percentage:</strong> ${formData.tenthPercentage}</li>
-          <li><strong>12th School Name:</strong> ${formData.twelfthSchoolName}</li>
-          <li><strong>12th Percentage:</strong> ${formData.twelfthPercentage}</li>
+          <li><strong>12th School Name:</strong> ${
+            formData.twelfthSchoolName
+          }</li>
+          <li><strong>12th Percentage:</strong> ${
+            formData.twelfthPercentage
+          }</li>
           <li><strong>12th Result:</strong> ${formData.twelfthResult}</li>
+          
+          ${
+            formData.isPostgraduate === "yes"
+              ? `
+            <li><strong>UG College:</strong> ${
+              formData.ugCollege || "Not provided"
+            }</li>
+            <li><strong>UG Percentage:</strong> ${
+              formData.ugPercentage || "Not provided"
+            }</li>
+          `
+              : ""
+          }
         </ul>
       `,
     };
