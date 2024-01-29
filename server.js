@@ -49,8 +49,6 @@ app.post("/submitForm", async (req, res) => {
         <h3>Personal Information:</h3>
         <ul>
           <li><strong>Name:</strong> ${formData.name}</li>
-          <li><strong>Father's Name:</strong> ${formData.fatherName}</li>
-          <li><strong>Mother's Name:</strong> ${formData.motherName}</li>
           <li><strong>Gender:</strong> ${formData.gender}</li>
           <li><strong>Phone Number:</strong> ${formData.phoneNumber}</li>
           <li><strong>Email:</strong> ${formData.email}</li>
@@ -61,17 +59,14 @@ app.post("/submitForm", async (req, res) => {
     
         <h3>Education Details:</h3>
         <ul>
-          <li><strong>10th School Name:</strong> ${
-            formData.tenthSchoolName
-          }</li>
-          <li><strong>10th Percentage:</strong> ${formData.tenthPercentage}</li>
-          <li><strong>12th School Name:</strong> ${
-            formData.twelfthSchoolName
-          }</li>
+          <li><strong>10th Result:</strong> ${formData.tenthResult}</li>
+          <li><strong>12th Stream:</strong> ${formData.twelfthStream}</li>
           <li><strong>12th Percentage:</strong> ${
             formData.twelfthPercentage
           }</li>
           <li><strong>12th Result:</strong> ${formData.twelfthResult}</li>
+
+
           
           ${
             formData.isPostgraduate === "yes"
@@ -83,11 +78,15 @@ app.post("/submitForm", async (req, res) => {
               formData.ugPercentage || "Not provided"
             }</li>
             <li><strong>UG Course:</strong> ${
-              formData.ugCourse || "Not provided"
+              formData.ugBranch || "Not provided"
             }</li>
+
           `
               : ""
           }
+          <li><strong>Looking For:</strong><b> ${
+            formData.selectedOption
+          }</b></li>
         </ul>
       `,
     };
