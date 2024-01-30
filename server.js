@@ -44,51 +44,54 @@ app.post("/submitForm", async (req, res) => {
       to: process.env.RECEIVER,
       subject: "New Student Submission",
       html: `
-        <img src="https://iili.io/Ja9CYoN.md.png" alt="MyFutureway Logo" style="width: 150px; height: auto; margin: 0 auto;">
-
-        <h3>Personal Information:</h3>
-        <ul>
-          <li><strong>Name:</strong> ${formData.name}</li>
-          <li><strong>Gender:</strong> ${formData.gender}</li>
-          <li><strong>Phone Number:</strong> ${formData.phoneNumber}</li>
-          <li><strong>Email:</strong> ${formData.email}</li>
-          <li><strong>Date of Birth:</strong> ${formData.dateOfBirth}</li>
-          <li><strong>Address:</strong> ${formData.address}</li>
-          <li><strong>Pin Code:</strong> ${formData.pincode}</li>
-        </ul>
-    
-        <h3>Education Details:</h3>
-        <ul>
+      <img src="https://iili.io/Ja9CYoN.md.png" alt="MyFutureway Logo" style="width: 150px; height: auto; margin: 0 auto;">
+  
+      <h3>Personal Information:</h3>
+      <ul>
+        <li><strong>Name:</strong> ${formData.name}</li>
+        <li><strong>Gender:</strong> ${formData.gender}</li>
+        <li><strong>Phone Number:</strong> ${formData.phoneNumber}</li>
+        <li><strong>Email:</strong> ${formData.email}</li>
+        <li><strong>Date of Birth:</strong> ${formData.dateOfBirth}</li>
+        <li><strong>Address:</strong> ${formData.address}</li>
+        <li><strong>Looking For:</strong><b> ${formData.selectedOption}</b></li>
+      </ul>
+  
+      <h3>Education Details:</h3>
+      <ul>
+        ${
+          formData.selectedOption === "Diploma"
+            ? `
           <li><strong>10th Result:</strong> ${formData.tenthResult}</li>
-          <li><strong>12th Result:</strong> ${formData.twelfthStatus}</li>
+          <li><strong>12th Status:</strong> ${formData.twelfthStatus}</li>
+        `
+            : formData.selectedOption === "Bachelors Degree" ||
+              formData.selectedOption === "Medical" ||
+              formData.selectedOption === "Engineering"
+            ? `
+          <li><strong>12th Percentage:</strong> ${formData.twelfthPercentage}</li>
           <li><strong>12th Stream:</strong> ${formData.twelfthStream}</li>
-          <li><strong>12th Percentage:</strong> ${
-            formData.twelfthPercentage
+        `
+            : ""
+        }
+    
+        ${
+          formData.selectedOption === "Masters Degree"
+            ? `
+          <li><strong>UG College:</strong> ${
+            formData.ugCollege || "Not provided"
           }</li>
-          
-
-          
-          ${
-            formData.isPostgraduate === "yes"
-              ? `
-            <li><strong>UG College:</strong> ${
-              formData.ugCollege || "Not provided"
-            }</li>
-            <li><strong>UG Percentage:</strong> ${
-              formData.ugPercentage || "Not provided"
-            }</li>
-            <li><strong>UG Course:</strong> ${
-              formData.ugBranch || "Not provided"
-            }</li>
-
-          `
-              : ""
-          }
-          <li><strong>Looking For:</strong><b> ${
-            formData.selectedOption
-          }</b></li>
-        </ul>
-      `,
+          <li><strong>UG Percentage:</strong> ${
+            formData.ugPercentage || "Not provided"
+          }</li>
+          <li><strong>UG Course:</strong> ${
+            formData.ugBranch || "Not provided"
+          }</li>
+        `
+            : ""
+        }
+      </ul>
+    `,
     };
 
     // Send the email
